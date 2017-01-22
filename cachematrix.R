@@ -6,8 +6,8 @@
 ## The function makeCacheMatrix returns four functions to the parent environment 
 ## as a list of named elements along with all objects created in the functions.
 ## It uses the <<- operator to retain the inversed matrix in s and return it 
-## when function CacheSolve is called with the same input. When input is changes 
-## S is set to null forcing cache solve to recalculate inverse.
+## when function CacheSolve calls the respective function with the same input. When input matrix changes
+## S is set to null forcing cacheSolve to recalculate inverse.
 
 
 makeCacheMatrix <- function(x = diag(2)) {
@@ -25,12 +25,12 @@ makeCacheMatrix <- function(x = diag(2)) {
 }
 
 
-## Function calculated the inverse of matrix input to makeCacheMatrix
-## takes a makeCasheSolve type list as input and call its elements .First it calls
-## getsolve, check if there is any inverse data in cache. The environment
-## defining getsolve has already set s to null, hence first time calls for an 
-## input  results to false . So function calls to get() functions receive the X value 
-## as input matrix calculated inverse and stores in cache using setsolve.
+## Function cacheSolve calculates the inverse of matrix that is input to makeCacheMatrix.
+## It takes a list of type makecacheMatrix as argument and calls its functions .First it calls
+## getsolve, then checks if there is any inverse data in cache. The environment
+## defining getsolve has already set s to null, hence first time calls input  results to false . 
+## Then cacheSolve calls to get() and receives the X value (input matrix for makeCacheMatrix) 
+## then it calculates inverse using solve() and calls setsolve to store result in cache.
 
 cacheSolve <- function(lst, ...) {
   s1 <- lst$getsolve()
